@@ -1,0 +1,70 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 20, 2020 at 07:42 PM
+-- Server version: 5.7.19
+-- PHP Version: 7.1.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `marathon`
+--
+CREATE DATABASE IF NOT EXISTS `marathon` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `marathon`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `racers`
+--
+
+DROP TABLE IF EXISTS `racers`;
+CREATE TABLE IF NOT EXISTS `racers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fullName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `birthDate` date NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `race_category_id` int(11) NOT NULL,
+  `bibNumber` int(11) NOT NULL,
+  `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `race_category_id` (`race_category_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `racers`
+--
+
+INSERT INTO `racers` (`id`, `fullName`, `email`, `birthDate`, `gender`, `race_category_id`, `bibNumber`, `registrationDate`) VALUES
+(1, 'Maya Atwi', 'maya@gmail.com', '2004-03-10', 'Female', 2, 1, '2020-03-20 21:18:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `race_categories`
+--
+
+DROP TABLE IF EXISTS `race_categories`;
+CREATE TABLE IF NOT EXISTS `race_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(25) NOT NULL,
+  `raceNumber` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `race_categories`
+--
+
+INSERT INTO `race_categories` (`id`, `category`, `raceNumber`) VALUES
+(1, '10K', '0 - 100'),
+(2, 'Half Marathon', '101 - 200'),
+(3, 'Marathon', '201 - 300');
+COMMIT;
